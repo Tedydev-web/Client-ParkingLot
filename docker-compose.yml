@@ -1,0 +1,10 @@
+version: "2.1"
+services:
+  live-map:
+    build: .
+    image: 'live-map:latest'
+    environment:
+      NODE_ENV: production
+    working_dir: /app
+    ports:
+      - '8666:3000'

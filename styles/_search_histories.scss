@@ -1,0 +1,249 @@
+.search-histories {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    // overflow: auto;
+}
+
+.search-histories>.search-component {
+    padding: 15px;
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+}
+
+.search-histories>.search-histories-body {
+    position: relative;
+    z-index: 1;
+    padding-top: 100px;
+    height: 100%;
+}
+
+.search-histories-body-content {
+    height: 80%;
+    flex: 1;
+}
+
+.search-histories>.search-histories-body>.search-histories-body-text>span {
+    font-size: 1.125rem;
+    margin-right: 8px;
+    margin-left: 16px;
+}
+
+.search-histories-body-content-hearder {
+    height: 48px;
+    border-bottom: 1px solid #dadce0;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    // display: flex;
+    // align-items: center;
+}
+
+.search-histories-body-content-hearder>.search-histories-body-content-hearder-type {
+    height: 32px;
+    background-color: #e8f0fe;
+    border: 1px solid #d2e3fc;
+    display: flex;
+    // padding: 4px;
+    margin-left: 16px;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+}
+
+.search-histories-body-content-hearder>.search-histories-body-content-hearder-type>span {
+    color: #1967d2;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 6ps;
+}
+
+.search-histories-body-content-hearder>.search-histories-body-content-hearder-type>.anticon-check {
+    margin-right: 4px;
+}
+
+.search-histories-body-content-list {
+    // margin-left: 16px;
+    height: 100%;
+    // overflow: auto;
+    overflow: visible;
+    overflow-y: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.search-histories-body-content-list::-webkit-scrollbar {
+    width: 5px;
+    /* Chiều rộng của thanh cuộn */
+}
+
+.search-histories-body-content-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* Màu nền của track thanh cuộn */
+}
+
+.search-histories-body-content-list::-webkit-scrollbar-thumb {
+    background: #888;
+    /* Màu của thanh cuộn */
+    border-radius: 10px;
+    /* Bo tròn góc của thanh cuộn */
+}
+
+.search-histories-body-content-item {
+    // margin-top: 16px;
+    // padding-left: 8px;
+    padding: 16px 16px 16px 16px;
+    display: flex;
+    // padding-right: 8px;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.search-histories-body-content-item>.search-histories-body-content-item-info {
+    display: flex;
+    width: 95%;
+}
+
+.search-histories-body-content-item.checked {
+    background-color: #ebebeb;
+    border-radius: 20px;
+}
+
+.search-histories-body-content-item>.search-histories-body-content-item-info>img {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    vertical-align: top;
+    object-fit: cover;
+    margin-right: 16px;
+}
+
+// .search-histories-body-content-item>input {
+//     height: 12px;
+// }
+input[type="checkbox"] {
+    transform: scale(1.5);
+    /* Thay đổi 1.5 thành kích thước bạn muốn */
+    -webkit-transform: scale(1.5);
+    /* Đảm bảo hỗ trợ trình duyệt WebKit */
+    -moz-transform: scale(1.5);
+    /* Đảm bảo hỗ trợ trình duyệt Firefox */
+    -ms-transform: scale(1.5);
+    /* Đảm bảo hỗ trợ trình duyệt IE */
+    -o-transform: scale(1.5);
+    /* Đảm bảo hỗ trợ trình duyệt Opera */
+    margin: 5px;
+    /* Tùy chỉnh lại margin nếu cần */
+}
+
+.search-histories-body-content-item-info-name-title {
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.5rem;
+}
+
+.search-histories-body-content-item-info-name-text {
+    color: #70757a;
+}
+
+.search-histories-body-content-item-close-item {
+    position: absolute;
+    /* right: 0; */
+    // left: 8px;
+    background-color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #d2e3fc;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.search-histories-body-content-item:hover .search-histories-body-content-item-close-item {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-histories-body-content-item:hover {
+    background-color: #ebebeb;
+    border-radius: 20px;
+    // margin-left: 16px;
+}
+
+.search-histories-body-content-item-info-name {
+    margin-right: 8px;
+}
+
+.search-histories-body-footer {
+    height: 64px;
+    background-color: #ffffff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ebebeb;
+
+    .search-histories-body-footer-right {
+        color: #1967d2;
+        margin-right: 16px;
+        font-weight: 550;
+        cursor: pointer;
+        padding: 8px 16px 8px 16px;
+        border-radius: 10px;
+    }
+
+    .search-histories-body-footer-right:hover {
+        background-color: #F6FAFE;
+    }
+
+    .search-histories-body-footer-left {
+        .search-histories-body-footer-left-disable {
+            // height: 48px;
+            background-color: #E9EEF3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px 8px 16px;
+            margin-left: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+
+            .search-histories-body-footer-left-delete-text {
+                margin-left: 8px;
+                color: #B7BEC7;
+            }
+        }
+
+        .search-histories-body-footer-left-disable:hover {
+            box-shadow: 1px 3px 3px rgba(68, 68, 68, 0.2);
+        }
+
+        .search-histories-body-footer-left-active {
+
+            background-color: #1B6FF2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px 8px 16px;
+            margin-left: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+
+            .search-histories-body-footer-left-delete-text {
+                margin-left: 8px;
+                color: #ffffff;
+            }
+        }
+    }
+}

@@ -1,0 +1,58 @@
+.City_name{
+    color: #202124;
+    font-weight: 500;
+    margin: 0px;
+    font-size: 15px;
+    overflow: hidden;
+    padding: 10px 20px;
+    text-overflow: ellipsis;
+    font-family: Roboto, Arial, sans-serif;
+}
+
+.Weather_content
+ {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+}
+
+.Temperature{
+    background-size: 24px 24px;
+    height: 24px;
+    margin: 8px 18px 8px 10px;
+    width: 24px;
+
+
+}
+.Display_Temperature{
+    color: #707757;
+    font-family:  'Roboto',  Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+}
+.Borde {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    border: 1px solid #f5f5f5;
+    border-radius: 15px;
+    background-color: #ffffff;
+
+}
+
+.Mass {
+ 
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+    flex: none;
+    line-height: 20px;
+    position: relative;
+    white-space: nowrap;
+    justify-content: space-between;
+  
+  
+}

@@ -1,0 +1,77 @@
+#map {
+  width: 100vw ;
+  height: 100vh;
+  canvas {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+.change-status-button {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  cursor: pointer;
+  overflow: hidden;
+  background-size: 100% 100%;
+}
+
+.goongjs-ctrl-attrib {
+  display: none;
+}
+
+.nav {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 10px;
+}
+
+.goongjs-popup-content {
+  padding: 0;
+}
+
+.popup-content {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 28px;
+  color: #595959;
+  display: block;
+
+  cursor: pointer;
+  font-weight: 400;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+.popup-title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: #262626;
+}
+
+.div-marker {
+  background-size: cover;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.tooltip-marker {
+  z-index: 2000;
+  .goongjs-popup-tip {
+    border-top-color: rgba(0, 0, 0, 0.65);
+  }
+}
+
+.goongjs-popup {
+  z-index: 9999;
+}
+
+.tooltip-info-location {
+  text-align: center;
+}

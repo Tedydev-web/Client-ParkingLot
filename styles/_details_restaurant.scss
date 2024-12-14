@@ -1,0 +1,484 @@
+.content-servicedetails {
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3),
+    0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  // background-color: aqua;
+  background-color: #ffff;
+  height: 100vh;
+  min-height: 200px;
+  width: 100%;
+  //   max-width: 408px;
+  font-family: "Roboto", "Arial", "sans-serif";
+}
+
+.restaurant-omnibox {
+  position: relative;
+  left: 0;
+  // margin-left: 15px;
+  top: 0;
+  z-index: 15;
+  margin-bottom: 12px;
+  padding-top: 15px;
+}
+
+.restaurant-omnibox-singlebox .restaurant-seảch--adress {
+  z-index: 4;
+  margin-left: 20px;
+}
+
+.restaurant-omnibox-singlebox {
+  display: block;
+}
+
+.restaurant-active {
+  position: absolute;
+  z-index: 1003;
+  left: 0;
+  top: 0;
+}
+
+
+#restaurant-header--icon--back{
+  cursor: pointer;
+  color: #70757a;
+  position: absolute;
+  top: 24px;
+  left: 38px;
+}
+
+.restaurant-search--adress {
+
+
+  border-bottom: 1px solid transparent;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  border: 1px solid #dadce0;
+  padding: 11px 106px 11px 64px;
+  box-shadow: none;
+  left: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 24px;
+  // border-radius: 24px 24px 0 0; /* Bo tròn chỉ hai góc trên */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.restaurant-clear-form {
+  position: relative;
+}
+
+.restaurant-clear-form form {
+  display: block;
+  margin-top: 0em;
+  unicode-bidi: isolate;
+}
+
+#search--box--input::placeholder {
+  font-size: 14px;
+  font-family: Roboto, Arial, sans-serif;
+  color: #70757a;
+}
+
+#search--box--input {
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.25rem;
+  border: none;
+  color: #70757a;
+  font-size: 14px;
+  padding: 0 !important;
+  height: 24px !important;
+  line-height: 24px;
+  vertical-align: top;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  width: 85%;
+}
+
+#search--box--input:focus-visible {
+  border-color: #4285f4;
+  outline: none;
+}
+
+.suggestions-list {
+  position: absolute;
+  top: 55px;
+  left: 21px;
+  width: 366px;
+  background-color: white;
+  // border-radius: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  list-style: none;
+  margin: 8px 0;
+  padding: 0;
+  z-index: 1000;
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  border-radius: 0px 0px 24px 24px;
+}
+
+.suggestions-list:focus-visible {
+  outline: none;
+}
+
+.suggestions-list::-webkit-scrollbar {
+  display: none;
+  /* Dành cho Chrome, Safari và Edge */
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.suggestion-item:hover {
+  background-color: #f1f3f4;
+}
+
+.restaurant-search--adress--input--icon {
+  margin-right: 16px;
+  font-size: 20px;
+  color: #1890ff;
+}
+
+.suggestion-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.suggestion-text {
+  font-size: 14px;
+  color: #333;
+}
+
+.suggestion-subtext {
+  font-size: 12px;
+  color: #70757a;
+}
+
+// ---------------------------------------------------------------
+.restaurant-search-button-container {
+  position: absolute;
+  right: 54px;
+  top: 24px;
+  right: 130px;
+}
+
+.searchbox-active .restaurant-search-button,
+.xoLGzf:not(.searchbox-empty) .restaurant-search-button {
+  cursor: pointer;
+}
+
+.restaurant-search-button {
+  display: block;
+  padding: 0px;
+  color: #70757a;
+  background: none;
+  border: none;
+}
+
+.restaurant-search-button-container:hover #searchbox-searchbutton--SearchOutlined {
+  color: #1a73e8;
+  cursor: pointer;
+}
+
+.restaurant-active {
+  position: absolute;
+  z-index: 1003;
+  left: 0;
+  top: 0;
+}
+
+.tooltip--comeback--restaurant {
+  display: none;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1003;
+  white-space: nowrap;
+  background-color: #000;
+  color: #fff;
+  padding: 1px 8px 3px 8px;
+  border-radius: 8px;
+  font-size: 14px;
+  top: 160%;
+  left: -140%;
+  transform: translateX(10px) translateY(-50%);
+}
+.restaurant-list-item:hover{
+  background: #f7f8f8;
+}
+#restaurant-header--icon--back:hover .tooltip--comeback--restaurant {
+  display: block;
+}
+
+.restaurant-search-button-container:hover .tooltip--search--restaurant {
+  display: block;
+}
+
+.vertical-border:hover .tooltip--Cancel--nearby--search {
+  display: block;
+}
+
+.tooltip--search--restaurant {
+  display: none;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1003;
+  white-space: nowrap;
+  background-color: #000;
+  /* Màu nền của tooltip */
+  color: #fff;
+  /* Màu chữ của tooltip */
+  padding: 2px 7px 2px 7px;
+  border-radius: 8px;
+  font-size: 14px;
+  top: 170%;
+  /* Điều chỉnh vị trí của tooltip */
+  left: -110%;
+  /* Điều chỉnh vị trí của tooltip */
+  transform: translateX(10px) translateY(-50%);
+}
+
+.tooltip--Cancel--nearby--search {
+  display: none;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1003;
+  white-space: nowrap;
+  background-color: #000;
+  color: #fff;
+  /* Màu chữ của tooltip */
+  padding: 1px 8px 2px 8px;
+  border-radius: 8px;
+  font-size: 14px;
+  top: 155%;
+  left: -50%;
+  transform: translateX(10px) translateY(-50%);
+}
+
+#restaurant--icon--top:hover {
+  color: #202124;
+}
+
+.restaurant-clear-button-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  position: absolute;
+  right: 28px;
+  top: 22.5px;
+  width: 71px;
+  height: 32px;
+  border-radius: 24px;
+  background: #1890ff;
+}
+
+.restaurant-icon {
+  color: #fff;
+  width: 40%;
+  float: left;
+  text-align: center;
+  cursor: default;
+  padding-right: 4.5px;
+}
+
+.restaurant-clear-button {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: relative;
+  top: -2px;
+  left: 3px;
+}
+
+.vertical-border {
+  border-left: 1px solid #5f9dff;
+  height: 18px;
+}
+
+#close--servicedetails {
+  color: white;
+}
+
+// ----------------------------------------------------------------------------------------
+
+.restaurant-results-header--top {
+  color: #202124;
+  min-height: unset;
+}
+
+.restaurant-results-header {
+  // display: block;
+  padding: 20px 0 21px;
+  min-width: 0;
+  display: flex;
+  padding: 26px 8px 0px 26px;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 0px;
+  flex: 1 0 0px;
+}
+
+.restaurant-results-title {
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0px;
+  padding-top: 5px;
+}
+
+.restaurant-results-title--span {
+  display: inline-block;
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  background-color: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.restaurant-results-title--span:hover {
+  background-color: #f0f0f0;
+}
+
+.restaurant-results-title--span img {
+  width: 18px;
+  height: 18px;
+}
+
+// -----------------------------------------------------------------------------------------------------
+
+.restaurant-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 17px 25px 20px 25px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.text-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 40px;
+}
+
+.text-content p {
+  color: #70757a;
+}
+
+.restaurant-item-image img {
+  border-radius: 4%;
+  margin-top: 5px;
+}
+
+.restaurant-list-item h3 {
+  margin: 0;
+  color: #202124;
+  font-weight: 500;
+}
+
+.restaurant-results-header--top--scroll {
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: scroll;
+  /* Chỉnh sửa ở đây */
+  overflow-x: hidden;
+  will-change: scroll-position;
+}
+
+.restaurant-results-header--top--scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.restaurant-results-header--top--scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.restaurant-results-header--top--scroll::-webkit-scrollbar-thumb {
+  background: #8d9195;
+  border-radius: 4px;
+}
+
+// -------------------------------------------------------------------------------------------------------------------
+
+
+
+.result--tooltip-search {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  min-height: 24px;
+  min-width: 40px;
+  max-width: 330px;
+  border-radius: 10px;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  background-color: #fff;
+  color: #202124;
+  padding: 16px 18px;
+  margin-left: 60px;
+  margin-top: 15px;
+}
+
+.result--tooltip-search::after {
+  content: '';
+  position: absolute;
+  top: -30px;
+  right: 273px;
+  border-width: 15px;
+  border-style: solid;
+  border-color: transparent transparent #f0f0f0 transparent;
+}
+
+.result--tooltip-search--title {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.5rem;
+}
+
+.result--tooltip-search--text {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5rem;
+  margin-top: 10px;
+}
+
+.transform {
+  top: 0px;
+  left: 24px;
+  transform: rotate(-35deg) skewY(-20deg) scaleX(0.939693);
+  transform-origin: left top;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 0px;
+}

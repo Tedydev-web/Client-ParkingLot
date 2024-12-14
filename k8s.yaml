@@ -1,0 +1,101 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: parkinglot-api-production
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: live-map
+  name: live-map
+  namespace: parkinglot-api-production
+spec:
+  selector:
+    matchLabels:
+      run: live-map
+  template:
+    metadata:
+      labels:
+        run: live-map
+    spec:
+      containers:
+      - image: IMAGE_REGISTRY
+        name: live-map
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+          name: http-port
+        resources:
+          limits:
+            cpu: 100m
+            memory: 300Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: live-map
+  namespace: parkinglot-api-production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1 
+    kind: Deployment
+    name: live-map
+  minReplicas: 1
+  maxReplicas: 1
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 90
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: live-map
+  namespace: parkinglot-api-production
+  labels:
+    app: live-map
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 3000
+    name: http-port
+  selector:
+    run: live-map
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app: live-map
+  name: live-map 
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  namespace: parkinglot-api-production
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - maps.goong.io
+    secretName: do-ingress-tls
+  rules:
+  - host: maps.goong.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: live-map
+            port:
+              number: 80
+        path: /
+        pathType: Prefix

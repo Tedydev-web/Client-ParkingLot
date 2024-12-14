@@ -1,0 +1,116 @@
+@import "map";
+@import "searchbox";
+@import "navigationbox";
+@import "mobilestyle";
+@import "infolocation";
+@import "route_details";
+@import "search_histories";
+@import "details_restaurant";
+@import "weather";
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, “Roboto”, “Oxygen”,
+    “Ubuntu”, “Cantarell”, “Fira Sans”, “Droid Sans”, “Helvetica Neue”,
+    sans-serif;
+  color: black;
+  min-height: -webkit-fill-available;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+.address-mini-info {
+  color: #595959;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 22px;
+  margin-bottom: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.coord-mini-info {
+  margin-bottom: 0px;
+}
+
+.bottom-info-location-div {
+  width: 100%;
+  position: absolute;
+  bottom: 12px;
+  pointer-events: none;
+
+  .bottom-info-location {
+    width: 296px;
+    border-radius: 4px;
+    box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.2);
+    margin: auto;
+    pointer-events: auto;
+    cursor: pointer;
+    z-index: 1000;
+  }
+}
+
+.row-app {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: calc(var(--vh, 1vh) * 100);
+  pointer-events: none;
+  // padding: 12px;
+}
+
+.col-span-app {
+  box-sizing: border-box;
+  position: relative;
+  height: 100%;
+  pointer-events: none;
+
+  // min-width: 320px;
+  * {
+    pointer-events: auto;
+  }
+}
+
+.trigger {
+  font-size: large;
+  color: #595959;
+  cursor: pointer;
+  background: white;
+  padding: 12px 2px;
+  border-top-right-radius: 10px;
+  /* Bo góc phải trên */
+  border-bottom-right-radius: 10px;
+  /* Bo góc phải dưới */
+}
+
+.trigger:hover {
+  color: #1890ff;
+  background-color: #f1f1f1;
+}
+
+.maplibregl-ctrl-bottom-right {
+  display: none;
+}
+.translated_into_english button {
+  background: #fff;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+.translated_into_english--mobile button {
+  background: #fff;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid grey;
+  color: grey;
+}
+.translated_into_english--mobile {
+  position: absolute;
+  bottom: 5px;
+
+  cursor: pointer;
+  overflow: hidden;
+  background-size: 100% 100%;
+}

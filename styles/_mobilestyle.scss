@@ -1,0 +1,115 @@
+.swipe-up {
+  overflow-y: hidden;
+}
+
+html,
+body {
+  height: calc(100vh - 56px);
+}
+
+.row-app-mobile {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100%;
+  pointer-events: none;
+  padding: 0;
+}
+
+.div-navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-mobile {
+  position: absolute;
+  top: 56px;
+  right: 8px;
+  padding: 8px;
+}
+
+.search-mobile {
+  position: relative;
+  width: 100%;
+  padding: 16px;
+}
+.actions-icon-mobile {
+  text-align: center;
+  padding: 8px 24px;
+  display: flex;
+  justify-content: space-evenly;
+  > * {
+    margin: 0 8px;
+  }
+}
+.search-bar-mobile {
+  position: relative;
+  width: 100%;
+  padding: 16px !important;
+  .ant-input-clear-icon {
+    font-size: 16px;
+  }
+}
+
+.search-dropdown-mobile {
+  width: calc(100vw - 32px) !important;
+}
+
+.wrapp-modal {
+  pointer-events: none;
+  height: auto !important;
+}
+.am-modal-content {
+  text-align: justify !important;
+}
+.addressDetail-mobile {
+  padding: 16px;
+  color: black;
+
+  span {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 8px;
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    line-height: 24px;
+  }
+
+  h5 {
+    color: black;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 16px;
+  }
+}
+.addressDetail-collapse {
+  padding: 10px;
+  color: black;
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 8px;
+    display: block;
+    width: max-content;
+    max-width: 100%;
+  }
+
+  h5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: black;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+  }
+}
+
