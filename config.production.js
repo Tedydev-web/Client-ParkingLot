@@ -1,6 +1,6 @@
 module.exports = {
 	STYLE_KEY: 'EZNYawkacQB3WH9yK7dIFTYVkrNxWJgnHkw2v1WE',
-	API_KEY: 'dPuRDkoGWeXSogehCRGzARfnsyMBgS1TOWyGMPRI',
+	API_KEY: 'd6bUARogRKcMRchjbnl8TAkoaHRTq0Aok6MA9TUi',
 	WEATHER_API: 'b80572c03d85f1f8899c2073275803d9',
 	HOST_NAME: 'https://rsapi.goong.io',
 	API_GATEWAY_URL: 'https://rsapi.goong.io',
