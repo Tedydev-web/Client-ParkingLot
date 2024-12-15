@@ -22,7 +22,7 @@
     "http-proxy-middleware": "^1.0.4",
     "i18next": "^19.3.2",
     "install-peers": "^1.0.3",
-    "next": "^9.0.2",
+    "next": "^15.1.0",
     "next-optimized-images": "^2.5.5",
     "next-routes": "^1.4.2",
     "node-sass": "9.0.0",
