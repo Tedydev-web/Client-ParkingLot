@@ -1247,7 +1247,7 @@ const GET = (url, params, options = {}) => {
   let promise = new Promise((resolve, reject) => {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`${options.host_name || "https://rsapi.goong.io"}${url}`, {
       params: _objectSpread(_objectSpread({}, params), {}, {
-        api_key: options.api_key || "zR0c6DjYs3YWpvi5zSfywPUPesH2G1Liy7rqfVin"
+        api_key: options.api_key || "dPuRDkoGWeXSogehCRGzARfnsyMBgS1TOWyGMPRI"
       }),
       cancelToken: new CancelToken(function executor(c) {
         cancel = c;

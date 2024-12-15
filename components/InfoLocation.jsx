@@ -45,7 +45,7 @@ const InfoLocation = (props) => {
     // Kiểm tra nếu phần tử được click là input hoặc là bên trong thẻ input thì không làm gì cả
 
     if (event.target.tagName.toLowerCase() === "input") {
-      console.log('-------98899889')
+      console.log("-------98899889");
       return;
     }
     setIsFullscreen(!isFullscreen);
@@ -72,15 +72,15 @@ const InfoLocation = (props) => {
   }, [current_place]);
 
   const selectNearPlace = (pid) => {
-    props.dispatch(setInfoRestaurant(false))
+    props.dispatch(setInfoRestaurant(false));
     props.dispatch(getDetailByIdAction(pid));
-    props.dispatch(setBoxVisibleAction("info"))
+    props.dispatch(setBoxVisibleAction("info"));
     props.dispatch(clearSearchAroundAction());
   };
 
   const closeInfoRestaurant = () => {
-    props.dispatch(setInfoRestaurant(false))
-  }
+    props.dispatch(setInfoRestaurant(false));
+  };
 
   const searchAround = (place) => {
     const viewport = {
@@ -101,18 +101,27 @@ const InfoLocation = (props) => {
   };
 
   const navigationTo = async (place) => {
-    // console.log('------------------------to', place)
+    // Kiểm tra nếu place có dữ liệu hợp lệ
     const selectedPlaceId = place.id || place.place_id;
+    if (!selectedPlaceId) {
+      message.error("Không có ID địa điểm để điều hướng!");
+      return;
+    }
+
+    // Lấy thông tin chi tiết của địa điểm
     const response = await Request.place_detail(selectedPlaceId);
     const selectedPlace = response.data?.result;
+
     if (selectedPlace) {
+      // Cập nhật viewport để hiển thị đúng vị trí
       const viewport = {
         longitude: selectedPlace.geometry.location.lng,
         latitude: selectedPlace.geometry.location.lat,
         zoom: 15,
       };
+
+      // Cập nhật map viewport và thông tin điều hướng
       props.dispatch(setMapViewportAction(viewport));
-      // props.dispatch(setTypeInput(false));
       props.dispatch(setBoxVisibleAction("navigation"));
       props.dispatch(
         navigationToAction(
@@ -126,6 +135,7 @@ const InfoLocation = (props) => {
       message.error("Không tìm thấy vị trí của bạn!");
     }
 
+    // Kiểm tra vị trí của người dùng nếu có
     try {
       const my_location = props.my_location;
       if (my_location) {
@@ -143,7 +153,7 @@ const InfoLocation = (props) => {
         }
       }
     } catch (error) {
-      throw error;
+      console.error("Lỗi khi lấy vị trí người dùng:", error);
     }
   };
 
@@ -171,10 +181,10 @@ const InfoLocation = (props) => {
       // For other browsers (mainly WebKit)
       message.info(
         "Bạn có thể lưu địa điểm này vào dấu trang bằng cách nhấn " +
-        (navigator.userAgent.toLowerCase().indexOf("mac") !== -1
-          ? "Command/Cmd"
-          : "CTRL") +
-        " + D trên bàn phím.",
+          (navigator.userAgent.toLowerCase().indexOf("mac") !== -1
+            ? "Command/Cmd"
+            : "CTRL") +
+          " + D trên bàn phím.",
         5
       );
     }
@@ -183,12 +193,15 @@ const InfoLocation = (props) => {
   const saveToClipBoard = () => {
     const currentUrl = window.location.href;
 
-    navigator.clipboard.writeText(currentUrl).then(function () {
-      message.success(t("copy_to_climb"))
-    }, function (err) {
-      console.error('Không thể lưu URL vào clipboard: ', err);
-    });
-  }
+    navigator.clipboard.writeText(currentUrl).then(
+      function () {
+        message.success(t("copy_to_climb"));
+      },
+      function (err) {
+        console.error("Không thể lưu URL vào clipboard: ", err);
+      }
+    );
+  };
 
   let titleAddress;
 
@@ -216,7 +229,14 @@ const InfoLocation = (props) => {
   return (
     <div>
       {!isMobile && (
-        <div className="info_location_web" style={!info_restaurant ? { height: "100vh" } : { height: "100%", borderRadius: "16px" }}>
+        <div
+          className="info_location_web"
+          style={
+            !info_restaurant
+              ? { height: "100vh" }
+              : { height: "100%", borderRadius: "16px" }
+          }
+        >
           <Card
             className="infor-box"
             bodyStyle={{ padding: 0, flexDirection: "column" }}
@@ -225,8 +245,9 @@ const InfoLocation = (props) => {
             <div
               style={{
                 padding: 16,
-                backgroundImage: `url(${current_place ? getImageByType(current_place.types[0]) : null
-                  })`,
+                backgroundImage: `url(${
+                  current_place ? getImageByType(current_place.types[0]) : null
+                })`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 height: 240,
@@ -234,12 +255,15 @@ const InfoLocation = (props) => {
               }}
             >
               <div className="search-box">
-                {!info_restaurant &&
-                  <SearchingBox place={current_place} />
-                }
-                {info_restaurant &&
-                  <div onClick={closeInfoRestaurant} className="close-info-restaurant">X</div>
-                }
+                {!info_restaurant && <SearchingBox place={current_place} />}
+                {info_restaurant && (
+                  <div
+                    onClick={closeInfoRestaurant}
+                    className="close-info-restaurant"
+                  >
+                    X
+                  </div>
+                )}
               </div>
             </div>
 
@@ -248,25 +272,25 @@ const InfoLocation = (props) => {
             <Divider style={{ marginTop: 0, marginBottom: 0 }} />
             <div className="actions-info-wrapp">
               <div className="actions-icon">
-                {!info_restaurant &&
-                  <div
-                    onClick={() => {
-                      navigationTo(current_place);
-                      props.dispatch(clearSearchAroundAction());
-                    }}
-                  >
-                    <div className="icon-fist">
-                      <i
-                        className="fas fa-directions"
-                        style={{
-                          cursor: "pointer",
-                          color: "#FFFFFF",
-                          fontSize: 18,
-                        }}
-                      ></i>
-                    </div>
-                    <div className="text">{t("way")}</div>
-                  </div>}
+                <div
+                  onClick={() => {
+                    // Điều hướng đến current_place hoặc địa điểm được chọn từ danh sách
+                    navigationTo(current_place); // Hoặc có thể truyền `item` nếu là bãi đỗ xe từ danh sách
+                    props.dispatch(clearSearchAroundAction()); // Xóa kết quả tìm kiếm xung quanh
+                  }}
+                >
+                  <div className="icon-fist">
+                    <i
+                      className="fas fa-directions"
+                      style={{
+                        cursor: "pointer",
+                        color: "#FFFFFF",
+                        fontSize: 18,
+                      }}
+                    ></i>
+                  </div>
+                  <div className="text">{t("way")}</div>
+                </div>
                 <div onClick={saveToBookmark}>
                   <div className="icon">
                     <i
@@ -281,22 +305,6 @@ const InfoLocation = (props) => {
                   {/* </Tooltip> */}
                   <div className="text">{t("save")}</div>
                 </div>
-
-                <div>
-                  <div className="icon">
-                    <i
-                      className="far fa-bookmark"
-                      style={{
-                        cursor: "pointer",
-                        color: "#1A73E8",
-                        fontSize: 18,
-                      }}
-                    ></i>
-                  </div>
-                  {/* </Tooltip> */}
-                  <div className="text">{t("save")}</div>
-                </div>
-
                 <div onClick={togglePopup}>
                   <div className="icon">
                     <ShareAltOutlined
@@ -321,7 +329,7 @@ const InfoLocation = (props) => {
                 renderItem={(item) => (
                   <List.Item
                     style={{ cursor: "pointer" }}
-                    onClick={() => selectNearPlace(item.place_id)}
+                    onClick={() => navigationTo(item)}
                   >
                     <Tooltip
                       title={
@@ -386,7 +394,7 @@ const InfoLocation = (props) => {
       {isMobile && (
         <div
           className={`info_location_mobi ${isFullscreen ? "fullscreen" : ""}`}
-        // onClick={handleClick}
+          // onClick={handleClick}
         >
           <Card
             className="infor-box"
@@ -482,10 +490,11 @@ const InfoLocation = (props) => {
               <div
                 style={{
                   padding: 16,
-                  backgroundImage: `url(${current_place
-                    ? getImageByType(current_place.types[0])
-                    : null
-                    })`,
+                  backgroundImage: `url(${
+                    current_place
+                      ? getImageByType(current_place.types[0])
+                      : null
+                  })`,
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                   height: 240,
@@ -495,7 +504,6 @@ const InfoLocation = (props) => {
                 {!isFullscreen && (
                   <div className="search-box--mobile">
                     <SearchingBox place={current_place} />
-
                   </div>
                 )}
               </div>

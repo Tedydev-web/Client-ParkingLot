@@ -41,7 +41,7 @@ const DetailsRestaurant = (props) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const inputRef = useRef(null);
   const [isTooltipVisible, setTooltipVisible] = useState(false);
-
+  const [resDataAPI, setResDataAPI] = useState([]);
   const toggleTooltip = () => {
     setTooltipVisible(!isTooltipVisible);
   };
@@ -93,14 +93,19 @@ const DetailsRestaurant = (props) => {
     setShowSuggestions(true);
   };
 
-  const fetchAutocompleteResults = async (input, lat, long) => {
+  const fetchAutocompleteResults = async (
+    input,
+    lat,
+    long
+  ) => {
     try {
-      const newlatlong = `${lat},${long}`;
-      const results = await request.autocomplete(input, newlatlong);
-      const url =
-        "http://localhost:8000/api/ParkingLots/nearby?location=10.9637965%2C%20106.8432453&radius=1&limit=10&has_children=false";
+      // const newlatlong = `${lat},${long}`;
+      // const results = await request.autocomplete(input, newlatlong);
+      const radius = 3000;
+      const limit = 10;
+      const hasChildren = false;
+      const url = `http://localhost:8000/api/ParkingLots/nearby?location=${lat},${long}&radius=${radius}&limit=${limit}&has_children=${hasChildren}`;
       const res = await Axios.get(url);
-      console.log(JSON.stringify(res));
       setAutocompleteResults(res.data.results);
       let restaurantData = [];
       for (let data of res.data.results) {
