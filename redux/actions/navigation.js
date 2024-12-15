@@ -27,12 +27,14 @@ export const clearResultAction = () => {
 export const clearAction = () => {
   return { type: navigation.CLEAR_REQUEST }
 };
+
 export const setTypeLatlong = (type_latlong) => {
   return {
     type: navigation.TYPE_LATLONG,
     type_latlong
   }
 };
+
 export const setTypeInput = (type_input) => {
   return {
     type: navigation.TYPE_INPUT,

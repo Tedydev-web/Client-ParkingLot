@@ -32,6 +32,7 @@ import {
 import { setRestaurantData } from "../redux/actions/search";
 import { clearAction } from "../redux/actions/navigation";
 import { setInfoRestaurant } from "../redux/actions/navigation";
+import Axios from "axios";
 
 const DetailsRestaurant = (props) => {
   const [inputValue, setInputValue] = useState("");
@@ -77,7 +78,7 @@ const DetailsRestaurant = (props) => {
   );
 
   const handleChange = (e) => {
-    props.dispatch(setRestaurantData([]))
+    props.dispatch(setRestaurantData([]));
     const newValue = e.target.value;
     setInputValue(newValue);
 
@@ -96,13 +97,17 @@ const DetailsRestaurant = (props) => {
     try {
       const newlatlong = `${lat},${long}`;
       const results = await request.autocomplete(input, newlatlong);
-      setAutocompleteResults(results.data.predictions);
-      let restaurantData = []
-      for (let data of results.data.predictions) {
-        const respone = await Request.place_detail(data.place_id)
-        restaurantData.push(respone.data.result)
+      const url =
+        "http://localhost:8000/api/ParkingLots/nearby?location=10.9637965%2C%20106.8432453&radius=1&limit=10&has_children=false";
+      const res = await Axios.get(url);
+      console.log(JSON.stringify(res));
+      setAutocompleteResults(res.data.results);
+      let restaurantData = [];
+      for (let data of res.data.results) {
+        const respone = await Request.place_detail(data.place_id);
+        restaurantData.push(respone.data.result);
       }
-      props.dispatch(setRestaurantData(restaurantData))
+      props.dispatch(setRestaurantData(restaurantData));
 
       const newSuggestions = results.data.predictions.map((item) => ({
         icon: <SearchOutlined />,
@@ -147,7 +152,6 @@ const DetailsRestaurant = (props) => {
     };
   }, []);
   const onTitleSelect = async (place) => {
-
     // props.dispatch(setRestaurantData([]))
     // props.dispatch(clearAction())
     let check = true;
@@ -170,7 +174,7 @@ const DetailsRestaurant = (props) => {
       props.dispatch(getDetailByIdAction(pid));
       // setValue(`${place.structured_formatting.main_text} - ${place.structured_formatting.secondary_text}`);
       // props.dispatch(setBoxVisibleAction("info"));
-      props.dispatch(setInfoRestaurant(true))
+      props.dispatch(setInfoRestaurant(true));
     } else {
       const latLng = {
         latitude: place.location.lat,
@@ -211,12 +215,12 @@ const DetailsRestaurant = (props) => {
       const pid = place.id || place.place_id;
       props.dispatch(getDetailByIdAction(pid));
       // setValue(`${place.structured_formatting.main_text} - ${place.structured_formatting.secondary_text}`);
-      props.dispatch(setInfoRestaurant(true))
+      props.dispatch(setInfoRestaurant(true));
     }
   };
 
   const closeBox = async () => {
-    props.dispatch(setRestaurantData([]))
+    props.dispatch(setRestaurantData([]));
     const toPlaceId = props.to_place.id || props.to_place.place_id;
     const responseToPlace = await Request.place_detail(toPlaceId);
     const toPlace = responseToPlace.data?.result;
@@ -274,7 +278,6 @@ const DetailsRestaurant = (props) => {
   }, []);
 
   const iconColor = inputValue ? "#1a73e8" : "inherit";
-
   return (
     <div className="content-servicedetails">
       <div className="id-omnibox-container">
@@ -306,7 +309,6 @@ const DetailsRestaurant = (props) => {
                   onChange={handleChange}
                   onClick={handleInputClick}
                   autoComplete="off"
-
                 />
                 {/* {showSuggestions && suggestions.length > 0 && (
                   <ul className="suggestions-list">
@@ -347,9 +349,7 @@ const DetailsRestaurant = (props) => {
                         <button
                           className="restaurant-search-button"
                           id="searchbox-searchbutton"
-
                           onClick={() => {
-
                             onTitleSelect(item);
                           }}
                           disabled={!inputValue.trim()}
@@ -364,7 +364,6 @@ const DetailsRestaurant = (props) => {
                       </div>
                     ))}
                   </div>
-
                 )}
                 <div className="restaurant-clear-button-container">
                   <div className="restaurant-clear-button-wrapper">
@@ -395,7 +394,9 @@ const DetailsRestaurant = (props) => {
               <div className="restaurant-results-header--top--scroll">
                 <div className="restaurant-results-header--top">
                   <div className="restaurant-results-header">
-                    <h1 className="restaurant-results-title">{t("results-title_button_i18")}</h1>
+                    <h1 className="restaurant-results-title">
+                      {t("results-title_button_i18")}
+                    </h1>
                     <span
                       className="restaurant-results-title--span"
                       onClick={toggleTooltip}
@@ -416,7 +417,10 @@ const DetailsRestaurant = (props) => {
                       </div>
                       <div className="result--tooltip-search--text">
                         {t("results-title_button_text_1_i18")}
-                        <span style={{ color: "#1890FF" }}> {t("results-title_button_text_2_i18")} </span>
+                        <span style={{ color: "#1890FF" }}>
+                          {" "}
+                          {t("results-title_button_text_2_i18")}{" "}
+                        </span>
                         {t("results-title_button_text_3_i18")}
                       </div>
                     </div>
@@ -432,15 +436,23 @@ const DetailsRestaurant = (props) => {
                       onClick={() => onTitleSelect(item)}
                     >
                       <div className="text-content">
-                        <h3>{item.structured_formatting.main_text}</h3>
-                        <p>{item.structured_formatting.secondary_text}</p>
+                        <h3>{item.name}</h3>
+                        <p>{item.formatted_address}</p>
                       </div>
                       <a className="restaurant-item-image">
                         <img
-                          src={getImageByType(item.types[0])}
+                          src={
+                            item.photos &&
+                            item.photos[0] &&
+                            item.photos[0].photo_reference
+                              ? getImageByType(
+                                  `http://localhost:8000${item.photos[0].photo_reference}`
+                                )
+                              : "http://localhost:8000/uploads/parkinglots/d46d0f04-ef77-421d-a721-4db6229d2b58/pl_d46d0f04-ef77-421d-a721-4db6229d2b58_di%E1%BB%83m-d%E1%BB%97-xe-04_main_20241215_102739.png" // Đường dẫn ảnh mặc định
+                          }
                           width="80px"
                           height="80px"
-                          alt={`Image of ${item.name}`}
+                          alt={`Image of ${item.name || "restaurant"}`}
                         />
                       </a>
                     </div>

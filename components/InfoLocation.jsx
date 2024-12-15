@@ -281,6 +281,22 @@ const InfoLocation = (props) => {
                   {/* </Tooltip> */}
                   <div className="text">{t("save")}</div>
                 </div>
+
+                <div>
+                  <div className="icon">
+                    <i
+                      className="far fa-bookmark"
+                      style={{
+                        cursor: "pointer",
+                        color: "#1A73E8",
+                        fontSize: 18,
+                      }}
+                    ></i>
+                  </div>
+                  {/* </Tooltip> */}
+                  <div className="text">{t("save")}</div>
+                </div>
+
                 <div onClick={togglePopup}>
                   <div className="icon">
                     <ShareAltOutlined

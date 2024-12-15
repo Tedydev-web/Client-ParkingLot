@@ -9,7 +9,7 @@ import background from '../static/images/background.png';
 import clock from '../static/images/clock.png';
 import cross from '../static/images/cross.png';
 import gmail from '../static/images/gmail.png';
-import parkinglot_logo_mini from '../static/images/logo-mini.png';
+import parkinglot_logo_mini from '../static/images/logo_mini.png';
 import hotel from '../static/images/hotel.png';
 import ic_directions_filled_blue900_24px from '../static/images/ic_directions_filled_blue900_24px.png';
 import location from '../static/images/location.png';
@@ -26,7 +26,7 @@ import start_location_grey800_18dp from '../static/images/start_location_grey800
 import straight_grey800_18dp from '../static/images/straight_grey800_18dp.png';
 import twitter from '../static/images/twitter.png';
 import union from '../static/images/union.png';
-import up_and_down from '../static/images/up-and-down.png';
+import up_and_down from '../static/images/up_and_down.png';
 import alley from '../static/images/location_type/alley.png';
 import art from '../static/images/location_type/art.png';
 import atm from '../static/images/location_type/atm.png';
