@@ -106,15 +106,15 @@ const DetailsRestaurant = (props) => {
       const hasChildren = false;
       const url = `http://localhost:8000/api/ParkingLots/nearby?location=${lat},${long}&radius=${radius}&limit=${limit}&has_children=${hasChildren}`;
       const res = await Axios.get(url);
-      setAutocompleteResults(res.data.results);
+      setAutocompleteResults(res.data.predictions);
       let restaurantData = [];
-      for (let data of res.data.results) {
+      for (let data of res.data.predictions) {
         const respone = await Request.place_detail(data.place_id);
-        restaurantData.push(respone.data.result);
+        restaurantData.push(res.data.predictions);
       }
       props.dispatch(setRestaurantData(restaurantData));
 
-      const newSuggestions = results.data.predictions.map((item) => ({
+      const newSuggestions = res.data.predictions.map((item) => ({
         icon: <SearchOutlined />,
         text: item.structured_formatting.main_text,
         subtext: item.structured_formatting.secondary_text,
@@ -441,8 +441,8 @@ const DetailsRestaurant = (props) => {
                       onClick={() => onTitleSelect(item)}
                     >
                       <div className="text-content">
-                        <h3>{item.name}</h3>
-                        <p>{item.formatted_address}</p>
+                        <h3>{item.structured_formatting.main_text}</h3>
+                        <p>{item.structured_formatting.secondary_text}</p>
                       </div>
                       <a className="restaurant-item-image">
                         <img

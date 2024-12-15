@@ -101,7 +101,7 @@ const InfoLocation = (props) => {
   };
 
   const navigationTo = async (place) => {
-    // Kiểm tra nếu place có dữ liệu hợp lệ
+    console.log(near_places)
     const selectedPlaceId = place.id || place.place_id;
     if (!selectedPlaceId) {
       message.error("Không có ID địa điểm để điều hướng!");
